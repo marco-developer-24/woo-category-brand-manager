@@ -246,7 +246,10 @@ class MarcasPorCategoria {
             : '';
 
         // URL para limpiar filtro
-        $clear_url = $category ? get_term_link($category, 'product_cat') : '';
+        $clear_url = get_term_link($category, 'product_cat');
+        if (is_wp_error($clear_url)) {
+            $clear_url = '';
+        }
 
         $html = '<ul class="marcas-logos">';
 
