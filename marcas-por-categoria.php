@@ -59,6 +59,27 @@ class MarcasPorCategoria {
                 border-color: #02aefd;
             }
 
+            ul.marcas-logos li.marca-item a:focus-visible,
+            ul.marcas-logos li.marca-item .marca-clear:focus-visible {
+                outline: 3px solid #02aefd;
+                outline-offset: 3px;
+            }
+
+            @media (max-width: 480px) {
+                ul.marcas-logos {
+                    gap: 10px;
+                }
+
+                ul.marcas-logos li.marca-item {
+                    width: 72px;
+                    height: 72px;
+                }
+
+                ul.marcas-logos li.marca-item a {
+                    padding: 7px;
+                }
+            }
+
             ul.marcas-logos li.marca-item img {
                 max-width: 100%;
                 max-height: 100%;
