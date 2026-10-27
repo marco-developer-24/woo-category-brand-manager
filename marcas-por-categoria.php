@@ -262,7 +262,8 @@ class MarcasPorCategoria {
             $active_class = ($active_brand === $slug) ? ' active' : '';
 
             $html .= '<li class="marca-item">';
-            $html .= '<a class="' . $active_class . '" href="' . esc_url($marca['url']) . '" title="' . esc_attr($marca['name'] . ' (' . $marca['count'] . ' productos)') . '">';
+            $aria_current = ($active_brand === $slug) ? ' aria-current="true"' : '';
+            $html .= '<a class="' . $active_class . '" href="' . esc_url($marca['url']) . '" title="' . esc_attr($marca['name'] . ' (' . $marca['count'] . ' productos)') . '"' . $aria_current . '>';
 
             if (!empty($marca['img'])) {
                 $html .= '<img src="' . esc_url($marca['img']) . '" alt="' . esc_attr($marca['name']) . '">';
@@ -275,7 +276,7 @@ class MarcasPorCategoria {
 
             // Mostrar X solo si esta marca está activa
             if ($active_brand === $slug && $clear_url) {
-                $html .= '<a href="' . esc_url($clear_url) . '" class="marca-clear" title="Limpiar filtro">×</a>';
+                $html .= '<a href="' . esc_url($clear_url) . '" class="marca-clear" title="Limpiar filtro" aria-label="' . esc_attr('Limpiar filtro de marca: ' . $marca['name']) . '">×</a>';
             }
 
             $html .= '</li>';
