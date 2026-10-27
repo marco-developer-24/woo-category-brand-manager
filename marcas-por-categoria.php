@@ -194,9 +194,11 @@ class MarcasPorCategoria {
                     $base_url = get_term_link($category, 'product_cat');
                     if (is_wp_error($base_url)) continue;
 
-                    $current_brand = isset($_GET['product_brand'])
-                        ? sanitize_text_field($_GET['product_brand'])
-                        : '';
+                    $current_brand = '';
+
+                    if ( isset( $_GET['product_brand'] ) && is_string( $_GET['product_brand'] ) ) {
+                        $current_brand = sanitize_title( wp_unslash( $_GET['product_brand'] ) );
+                    }
 
                     // Toggle: si ya está activa, quitar filtro
                     if ($current_brand === $slug) {
@@ -226,10 +228,10 @@ class MarcasPorCategoria {
 
         if (is_product_category()) {
             $category = get_queried_object();
-        } elseif (isset($_GET['product_cat'])) {
+        } elseif ( isset( $_GET['product_cat'] ) && is_string( $_GET['product_cat'] ) ) {
             $category = get_term_by(
                 'slug',
-                sanitize_text_field($_GET['product_cat']),
+                sanitize_title( wp_unslash( $_GET['product_cat'] ) ),
                 'product_cat'
             );
         }
@@ -241,9 +243,11 @@ class MarcasPorCategoria {
 
         $this->shortcode_used = true;
 
-        $active_brand = isset($_GET['product_brand'])
-            ? sanitize_text_field($_GET['product_brand'])
-            : '';
+        $active_brand = '';
+
+        if ( isset( $_GET['product_brand'] ) && is_string( $_GET['product_brand'] ) ) {
+            $active_brand = sanitize_title( wp_unslash( $_GET['product_brand'] ) );
+        }
 
         // URL para limpiar filtro
         $clear_url = get_term_link($category, 'product_cat');
