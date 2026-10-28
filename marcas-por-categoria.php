@@ -52,16 +52,18 @@ class MarcasPorCategoria {
                 border-radius: 14px;
                 text-decoration: none;
                 position: relative;
-                transition: all 0.2s ease;
+                transition: border-color 0.2s ease, box-shadow 0.2s ease, transform 0.2s ease;
             }
 
             ul.marcas-logos li.marca-item a:hover {
-                border-color: #02aefd;
+                border-color: #3B82C4;
+                box-shadow: 0 6px 18px rgba(11, 17, 32, 0.08);
+                transform: translateY(-2px);
             }
 
             ul.marcas-logos li.marca-item a:focus-visible,
             ul.marcas-logos li.marca-item .marca-clear:focus-visible {
-                outline: 3px solid #02aefd;
+                outline: 3px solid #3B82C4;
                 outline-offset: 3px;
             }
 
@@ -100,8 +102,8 @@ class MarcasPorCategoria {
                 position: absolute;
                 bottom: 4px;
                 right: 4px;
-                background: #333;
-                color: #0fc9f2;
+                background: #0B1120;
+                color: #FFFFFF;
                 font-size: 10px;
                 font-weight: bold;
                 padding: 3px 6px;
@@ -112,12 +114,12 @@ class MarcasPorCategoria {
             /* ===== Marca Activa ===== */
 
             ul.marcas-logos li.marca-item a.active {
-                border: 1px solid #02aefd;
-                box-shadow: 0 0 0 3px rgba(2, 174, 253, 0.15);
+                border: 1px solid #3B82C4;
+                box-shadow: 0 0 0 3px rgba(59, 130, 196, 0.16);
             }
 
             ul.marcas-logos li.marca-item a.active .marca-count {
-                background: #02aefd;
+                background: #3B82C4;
                 color: #040424;
             }
 
@@ -129,7 +131,7 @@ class MarcasPorCategoria {
                 right: -6px;
                 width: 20px;
                 height: 20px;
-                background: #02aefd;
+                background: #3B82C4;
                 color: #fff;
                 border: 2px solid #fff;
                 border-radius: 50%;
