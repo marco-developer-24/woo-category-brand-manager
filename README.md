@@ -1,37 +1,38 @@
 # Marcas por Categoría — WooCommerce
 
-Plugin de WordPress que muestra las marcas asociadas a los productos de la categoría actual. Permite presentar logos o nombres, mostrar un contador de productos y generar enlaces para activar o quitar un filtro de marca.
+> Una capa de navegación visual para explorar las marcas disponibles dentro de una categoría de productos.
 
-El objetivo es ofrecer una navegación visual por marcas sin reemplazar el sistema de filtrado de la tienda.
+Un plugin de WordPress que muestra las marcas asociadas a los productos de la categoría actual. Puede presentar logos o nombres, contadores de productos y enlaces para activar o quitar un filtro de marca.
 
-## Qué hace
+**Enfoque:** una funcionalidad concreta, alcance explícito y validación antes de producción.
+
+## Funcionalidades
 
 - Detecta la categoría de productos actual.
 - Recupera las marcas asociadas a productos de esa categoría.
-- Muestra el logo de cada marca cuando está disponible; si no, muestra su nombre.
-- Indica cuántos productos de la categoría están asociados a cada marca.
-- Genera enlaces con el parámetro `product_brand` y permite quitar el filtro de la marca activa.
+- Muestra el logo de la marca cuando está disponible; como alternativa, presenta su nombre.
+- Indica cuántos productos encontrados están asociados a cada marca.
+- Genera enlaces con el parámetro `product_brand` y permite quitar la marca activa.
 - Expone la interfaz mediante el shortcode `[marcas_categoria]`.
 
-## Requisitos y supuestos
+## Requisitos
 
-- WordPress.
-- WooCommerce.
+- WordPress y WooCommerce.
 - Una taxonomía de marcas registrada con el slug `product_brand`.
 - Marcas asignadas a los productos.
-- Para mostrar logos, cada término de marca debe tener el metadato de imagen `thumbnail_id`.
+- Para mostrar logos, cada término debe tener el metadato de imagen `thumbnail_id`.
 
-**Este plugin no registra ni administra la taxonomía de marcas.** Si tu tienda utiliza otro slug o una extensión que guarda las imágenes de marca con una estructura diferente, será necesario adaptar la implementación.
+> **Compatibilidad:** este plugin no registra ni administra la taxonomía de marcas. Si la tienda usa otro slug o una extensión que almacena las imágenes con otra estructura, será necesario adaptar la implementación.
 
 ## Instalación
 
 1. Descargá el repositorio como ZIP.
 2. Copiá la carpeta del plugin en `wp-content/plugins/`.
 3. Activá el plugin desde el administrador de WordPress.
-4. Insertá `[marcas_categoria]` en el contenido o plantilla donde quieras mostrar las marcas.
+4. Insertá el shortcode en el contenido o plantilla donde quieras mostrar las marcas.
 5. Probá el resultado en una categoría que tenga productos y marcas asignadas.
 
-Realizá la primera validación en un entorno de pruebas y conservá una copia de seguridad antes de instalarlo en una tienda en producción.
+**Antes de instalarlo en producción:** hacé una copia de seguridad y validá el comportamiento en un entorno de pruebas.
 
 ## Uso
 
@@ -52,33 +53,31 @@ En una categoría compatible, cada elemento puede mostrar:
 
 Los enlaces generados utilizan el parámetro `product_brand` en la URL. **La presencia del parámetro no garantiza por sí sola que el catálogo se filtre.** El tema, la consulta de productos o el sistema de filtrado instalado debe interpretar ese parámetro.
 
-Antes de considerar terminada una integración, verificá tanto la navegación por marcas como los productos que efectivamente devuelve la tienda.
+Validá tanto la navegación por marcas como los productos que efectivamente devuelve la tienda.
 
 ## Limitaciones conocidas
 
-- La implementación actual recupera los IDs de todos los productos de la categoría en una consulta y recorre sus términos de marca. En categorías grandes, este enfoque puede tener un coste de rendimiento significativo.
+- La implementación recupera los IDs de los productos de la categoría en una consulta y recorre sus términos de marca. En categorías grandes, este enfoque puede tener un coste de rendimiento significativo.
 - La solución depende de la taxonomía `product_brand` y del metadato `thumbnail_id` para las imágenes.
 - El shortcode necesita poder determinar una categoría de productos para mostrar resultados.
-- El repositorio no incluye pruebas automatizadas. Los cambios deben validarse manualmente en una instalación de prueba de WordPress y WooCommerce.
-- La compatibilidad con otros plugins de marcas, temas y sistemas de filtros no debe darse por supuesta sin una prueba específica.
+- El repositorio no incluye pruebas automatizadas; los cambios deben validarse manualmente en una instalación de prueba de WordPress y WooCommerce.
+- La compatibilidad con otros plugins de marcas, temas y sistemas de filtros debe comprobarse en cada integración.
 
-## Validación recomendada
+## Checklist de validación
 
-Antes de desplegar una modificación, revisá al menos:
+- [ ] Categoría con productos y varias marcas.
+- [ ] Marca con logo y marca sin logo.
+- [ ] Activación y eliminación del filtro.
+- [ ] Contadores contrastados con los productos realmente asociados.
+- [ ] Categoría vacía o sin marcas asignadas.
+- [ ] Visualización móvil y navegación mediante teclado.
+- [ ] Consulta de productos resultante al utilizar `product_brand`.
 
-1. Una categoría con productos y varias marcas.
-2. Una marca con logo y otra sin logo.
-3. La activación y eliminación del filtro.
-4. Los contadores frente a los productos realmente asociados.
-5. Una categoría vacía o sin marcas asignadas.
-6. La visualización en móvil y la navegación mediante teclado.
-7. La consulta de productos resultante cuando se utiliza `product_brand`.
+También podés consultar la [lista de validación](docs/VALIDATION.md).
 
-Podés usar la [lista de validación](docs/VALIDATION.md) como guía.
+## Criterio de desarrollo
 
-## Desarrollo
-
-Priorizá cambios pequeños y verificables. Documentá las limitaciones observadas y separá las modificaciones de comportamiento de los cambios de documentación. No declares una mejora de rendimiento, seguridad o compatibilidad sin evidencia que la respalde.
+Priorizá cambios pequeños y verificables. Documentá las limitaciones observadas y separá las modificaciones de comportamiento de los cambios de documentación. No declares mejoras de rendimiento, seguridad o compatibilidad sin evidencia que las respalde.
 
 ## Licencia
 
