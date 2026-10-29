@@ -2,9 +2,15 @@
 
 > Una capa de navegación visual para explorar las marcas disponibles dentro de una categoría de productos.
 
+![WordPress](https://img.shields.io/badge/WordPress-Plugin-21759B?logo=wordpress&logoColor=white)
+![WooCommerce](https://img.shields.io/badge/WooCommerce-Catalog-96588A?logo=woocommerce&logoColor=white)
+![Estado](https://img.shields.io/badge/Estado-En%20desarrollo-3B82C4)
+
 Un plugin de WordPress que muestra las marcas asociadas a los productos de la categoría actual. Puede presentar logos o nombres, contadores de productos y enlaces para activar o quitar un filtro de marca.
 
-**Enfoque:** una funcionalidad concreta, alcance explícito y validación antes de producción.
+---
+
+**Enfoque de desarrollo:** funcionalidad concreta, alcance explícito y validación antes de producción.
 
 ## Funcionalidades
 
