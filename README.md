@@ -55,6 +55,21 @@ En una categoría compatible, cada elemento puede mostrar:
 - Un enlace para seleccionar la marca.
 - Un control para quitar la selección cuando esa marca está activa.
 
+### Contexto de categoría
+
+El shortcode obtiene la categoría de una de estas dos formas:
+
+- **Archivo de categoría de WooCommerce:** detecta automáticamente la categoría que se está visualizando.
+- **Otra página o plantilla:** necesita recibir el slug de la categoría mediante el parámetro `product_cat` en la URL.
+
+Por ejemplo, si la categoría tiene el slug `calzado`, la URL debe incluir:
+
+```text
+https://ejemplo.com/tienda/?product_cat=calzado
+```
+
+En una página sin archivo de categoría ni parámetro `product_cat`, el shortcode devuelve una salida vacía. El shortcode no acepta actualmente un atributo para seleccionar la categoría directamente.
+
 ## Alcance del filtrado
 
 Los enlaces generados utilizan el parámetro `product_brand` en la URL. **La presencia del parámetro no garantiza por sí sola que el catálogo se filtre.** El tema, la consulta de productos o el sistema de filtrado instalado debe interpretar ese parámetro.
