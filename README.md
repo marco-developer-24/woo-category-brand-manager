@@ -10,6 +10,19 @@ Un plugin de WordPress que muestra las marcas asociadas a los productos de la ca
 
 ---
 
+## Contenido
+
+- [Funcionalidades](#funcionalidades)
+- [Requisitos](#requisitos)
+- [Instalación](#instalación)
+- [Uso](#uso)
+  - [Contexto de categoría](#contexto-de-categoría)
+- [Alcance del filtrado](#alcance-del-filtrado)
+- [Limitaciones conocidas](#limitaciones-conocidas)
+- [Checklist de validación](#checklist-de-validación)
+- [Criterio de desarrollo](#criterio-de-desarrollo)
+- [Licencia](#licencia)
+
 **Enfoque de desarrollo:** funcionalidad concreta, alcance explícito y validación antes de producción.
 
 ## Funcionalidades
