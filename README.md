@@ -94,7 +94,7 @@ Validá tanto la navegación por marcas como los productos que efectivamente dev
 - La implementación recupera los IDs de los productos de la categoría en una consulta y recorre sus términos de marca. En categorías grandes, este enfoque puede tener un coste de rendimiento significativo.
 - La solución depende de la taxonomía `product_brand` y del metadato `thumbnail_id` para las imágenes.
 - El shortcode necesita poder determinar una categoría de productos para mostrar resultados.
-- El repositorio no incluye pruebas automatizadas; los cambios deben validarse manualmente en una instalación de prueba de WordPress y WooCommerce.
+- Incluye pruebas de regresión con funciones simuladas y una prueba de integración ejecutable dentro de WordPress; ninguna sustituye la validación manual de la tienda y sus extensiones.
 - La compatibilidad con otros plugins de marcas, temas y sistemas de filtros debe comprobarse en cada integración.
 
 ## Checklist de validación
