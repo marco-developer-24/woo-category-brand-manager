@@ -4,6 +4,16 @@ Usá esta lista al revisar cambios en **Marcas por Categoría — WooCommerce**.
 
 Esta lista es una guía manual; no representa una suite automatizada ni certifica compatibilidad con todos los temas o extensiones.
 
+## Pruebas automatizadas
+
+Ejecutar desde la raíz del repositorio:
+
+```bash
+php tests/test-brand-aggregation.php
+```
+
+La suite cubre agrupamiento por marca, conteo de relaciones, consulta por lotes, URLs de filtro y respuestas ante resultados vacíos o errores simulados. La ejecución también forma parte del workflow de GitHub Actions.
+
 ## Preparación
 
 - [ ] Registrar las versiones de WordPress, WooCommerce, PHP y del tema.
