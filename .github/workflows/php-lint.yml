@@ -6,10 +6,12 @@ on:
     paths:
       - '**.php'
       - '.github/workflows/php-lint.yml'
+      - '.wp-env.json'
   pull_request:
     paths:
       - '**.php'
       - '.github/workflows/php-lint.yml'
+      - '.wp-env.json'
   workflow_dispatch:
 
 permissions:
