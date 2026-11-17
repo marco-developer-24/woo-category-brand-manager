@@ -27,6 +27,18 @@ Este documento define criterios prácticos para mantener **Marcas por Categoría
 - Usar un mensaje de commit que describa el cambio real.
 - No mezclar documentación y cambios funcionales si eso dificulta revisar o revertir el trabajo.
 
+## Pruebas automatizadas
+
+El repositorio incluye una suite ligera de regresión para la agregación de marcas:
+
+```bash
+php tests/test-brand-aggregation.php
+```
+
+Las pruebas usan funciones simuladas de WordPress y cubren agrupamiento por slug, conteo de relaciones producto-marca, consulta por lotes, URLs de filtro, categorías sin productos y errores de consulta o URL. No reemplazan las pruebas de integración en una instalación real de WordPress y WooCommerce.
+
+GitHub Actions ejecuta el análisis sintáctico de PHP y esta suite en los cambios que afectan archivos PHP o el propio workflow.
+
 ## Alcance de las garantías
 
-El repositorio no incorpora actualmente una suite de pruebas automatizadas. Hasta que exista una, el estado de validación debe describirse como manual y limitado al entorno efectivamente probado. No se deben inferir compatibilidad universal, seguridad completa o mejoras de rendimiento a partir de una revisión superficial.
+Las pruebas automatizadas verifican la lógica cubierta bajo el entorno simulado; no certifican compatibilidad universal, integración real con WooCommerce, rendimiento en catálogos grandes ni seguridad completa. Esos aspectos requieren validación específica en un entorno WordPress real y datos representativos.
