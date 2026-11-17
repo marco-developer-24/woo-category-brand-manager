@@ -268,7 +268,7 @@ class MarcasPorCategoria {
             $html .= '<a class="' . $active_class . '" href="' . esc_url($marca['url']) . '" title="' . esc_attr($marca['name'] . ' (' . $marca['count'] . ' productos)') . '"' . $aria_current . '>';
 
             if (!empty($marca['img'])) {
-                $html .= '<img src="' . esc_url($marca['img']) . '" alt="' . esc_attr($marca['name']) . '">';
+                $html .= '<img src="' . esc_url($marca['img']) . '" alt="' . esc_attr($marca['name']) . '" loading="lazy" decoding="async">';
             } else {
                 $html .= '<span class="marca-text">' . esc_html($marca['name']) . '</span>';
             }
