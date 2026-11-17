@@ -2,7 +2,7 @@
 
 Usá esta lista al revisar cambios en **Marcas por Categoría — WooCommerce**. Ejecutá las pruebas en un entorno de desarrollo o staging con WordPress y WooCommerce instalados.
 
-Esta lista es una guía manual; no representa una suite automatizada ni certifica compatibilidad con todos los temas o extensiones.
+Esta lista complementa las pruebas automatizadas. No certifica compatibilidad con todos los temas o extensiones.
 
 ## Pruebas automatizadas
 
@@ -12,7 +12,21 @@ Ejecutar desde la raíz del repositorio:
 php tests/test-brand-aggregation.php
 ```
 
-La suite cubre agrupamiento por marca, conteo de relaciones, consulta por lotes, URLs de filtro y respuestas ante resultados vacíos o errores simulados. La ejecución también forma parte del workflow de GitHub Actions.
+La suite unitaria cubre agrupamiento por marca, conteo de relaciones, consulta por lotes, URLs de filtro y respuestas ante resultados vacíos o errores simulados. También existe una prueba de integración con WordPress real, ejecutada en GitHub Actions con WordPress y WooCommerce.
+
+## Prueba de integración WordPress
+
+La prueba crea temporalmente una categoría, dos marcas y tres productos en la instalación de WordPress disponible, asigna sus relaciones y comprueba los resultados de la función de agregación. Al finalizar, elimina los productos y términos creados.
+
+En un entorno configurado con [wp-env](https://developer.wordpress.org/block-editor/reference-guides/packages/packages-env/), ejecutá:
+
+```bash
+npx --yes @wordpress/env start
+npx --yes @wordpress/env run tests-cli wp eval-file wp-content/plugins/woo-category-brand-manager/tests/integration/test-brand-aggregation.php
+npx --yes @wordpress/env stop
+```
+
+La configuración del entorno está en `.wp-env.json`. La prueba requiere que el plugin esté montado con el nombre de carpeta `woo-category-brand-manager`. No la ejecutes contra una tienda con datos reales: crea y elimina contenido de prueba.
 
 ## Preparación
 
