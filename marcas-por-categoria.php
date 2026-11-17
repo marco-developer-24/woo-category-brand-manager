@@ -177,48 +177,59 @@ class MarcasPorCategoria {
         $products = get_posts($args);
         if (empty($products)) return [];
 
+        // Recuperar todas las relaciones de marca en una sola consulta.
+        // all_with_object_id permite asociar cada término con su producto.
+        $brand_terms = wp_get_object_terms(
+            $products,
+            'product_brand',
+            [
+                'fields' => 'all_with_object_id',
+            ]
+        );
+
+        if (is_wp_error($brand_terms) || empty($brand_terms)) {
+            return [];
+        }
+
+        $base_url = get_term_link($category, 'product_cat');
+        if (is_wp_error($base_url)) {
+            return [];
+        }
+
+        $current_brand = '';
+
+        if (isset($_GET['product_brand']) && is_string($_GET['product_brand'])) {
+            $current_brand = sanitize_title(wp_unslash($_GET['product_brand']));
+        }
+
         $marcas = [];
 
-        foreach ($products as $product_id) {
+        foreach ($brand_terms as $term) {
 
-            $terms = get_the_terms($product_id, 'product_brand');
-            if (!$terms || is_wp_error($terms)) continue;
+            $slug = $term->slug;
 
-            foreach ($terms as $term) {
+            if (!isset($marcas[$slug])) {
 
-                $slug = $term->slug;
+                $thumb_id = get_term_meta($term->term_id, 'thumbnail_id', true);
+                $img_url  = $thumb_id ? wp_get_attachment_image_url($thumb_id, 'medium') : '';
 
-                if (!isset($marcas[$slug])) {
-
-                    $thumb_id = get_term_meta($term->term_id, 'thumbnail_id', true);
-                    $img_url  = $thumb_id ? wp_get_attachment_image_url($thumb_id, 'medium') : '';
-
-                    $base_url = get_term_link($category, 'product_cat');
-                    if (is_wp_error($base_url)) continue;
-
-                    $current_brand = '';
-
-                    if ( isset( $_GET['product_brand'] ) && is_string( $_GET['product_brand'] ) ) {
-                        $current_brand = sanitize_title( wp_unslash( $_GET['product_brand'] ) );
-                    }
-
-                    // Toggle: si ya está activa, quitar filtro
-                    if ($current_brand === $slug) {
-                        $url = remove_query_arg('product_brand', $base_url);
-                    } else {
-                        $url = add_query_arg('product_brand', $slug, $base_url);
-                    }
-
-                    $marcas[$slug] = [
-                        'name'  => $term->name,
-                        'img'   => $img_url,
-                        'url'   => $url,
-                        'count' => 0,
-                    ];
+                // Toggle: si ya está activa, quitar filtro.
+                if ($current_brand === $slug) {
+                    $url = remove_query_arg('product_brand', $base_url);
+                } else {
+                    $url = add_query_arg('product_brand', $slug, $base_url);
                 }
 
-                $marcas[$slug]['count']++;
+                $marcas[$slug] = [
+                    'name'  => $term->name,
+                    'img'   => $img_url,
+                    'url'   => $url,
+                    'count' => 0,
+                ];
             }
+
+            // Cada relación término-producto representa un producto asociado.
+            $marcas[$slug]['count']++;
         }
 
         return $marcas;
