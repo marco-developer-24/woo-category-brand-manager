@@ -37,8 +37,8 @@ php tests/test-brand-aggregation.php
 
 Las pruebas usan funciones simuladas de WordPress y cubren agrupamiento por slug, conteo de relaciones producto-marca, consulta por lotes, URLs de filtro, categorías sin productos y errores de consulta o URL. No reemplazan las pruebas de integración en una instalación real de WordPress y WooCommerce.
 
-GitHub Actions ejecuta el análisis sintáctico de PHP y esta suite en los cambios que afectan archivos PHP o el propio workflow.
+GitHub Actions ejecuta el análisis sintáctico de PHP, la suite unitaria y una prueba de integración en WordPress con WooCommerce.
 
 ## Alcance de las garantías
 
-Las pruebas automatizadas verifican la lógica cubierta bajo el entorno simulado; no certifican compatibilidad universal, integración real con WooCommerce, rendimiento en catálogos grandes ni seguridad completa. Esos aspectos requieren validación específica en un entorno WordPress real y datos representativos.
+La suite unitaria verifica la lógica bajo funciones simuladas. La prueba de integración ejercita las APIs reales de WordPress para las relaciones de términos y productos. Ninguna certifica compatibilidad universal, rendimiento en catálogos grandes ni comportamiento con todos los plugins de marcas; esos aspectos requieren validación específica con datos representativos.
