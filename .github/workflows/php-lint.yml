@@ -40,3 +40,26 @@ jobs:
 
       - name: Run brand aggregation regression tests
         run: php tests/test-brand-aggregation.php
+
+  wordpress-integration:
+    name: WordPress integration tests
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Check out repository
+        uses: actions/checkout@v4
+
+      - name: Set up Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+
+      - name: Start WordPress and WooCommerce
+        run: npx --yes @wordpress/env start
+
+      - name: Run brand aggregation integration tests
+        run: npx --yes @wordpress/env run tests-cli wp eval-file wp-content/plugins/woo-category-brand-manager/tests/integration/test-brand-aggregation.php
+
+      - name: Stop WordPress environment
+        if: always()
+        run: npx --yes @wordpress/env stop
